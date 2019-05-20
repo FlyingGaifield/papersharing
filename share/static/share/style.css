@@ -1,0 +1,9 @@
+tbody {
+  counter-reset: section;           /* 重置计数器成0 */
+}
+p3:before {
+  counter-increment: section;      /* 增加计数器值 */
+  content:  counter(section) ; /* 显示计数器 */
+}
+
+.wrap {display:flex;}

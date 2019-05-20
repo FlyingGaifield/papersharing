@@ -1,0 +1,104 @@
+{% load static %}
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PaperSharing</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'share/style.css' %}">
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .left {width:50%;}
+        .right {width:50%;}
+    </style>
+
+
+<body>
+
+
+
+
+        <main role="main" class="container">
+                <h1 class="mt-5">PaperSharing    </h1>
+        </main>
+        <nav class="navbar navbar-inverse ">
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'index'%}"><font size="4px">Home</font></a></li>
+                    {% if catalogue_list %}
+                        {% for each in catalogue_list %}
+                            <li><a href="{% url 'detail' each.id %}"><font size="4px">{{ each.catalogue_text }}</font></a></li>
+                        {% endfor %}
+                    {% else %}
+                        <p>No polls are available.</p>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+
+
+        <main role="main" class="container">
+            <div class="wrap">
+                <div class = "left">
+                  <h2>  目的 </h2>
+                  <p>大家好，这个网站旨在和实验室一起分享自己读过的文章</p>
+                  <p>将文章的核心简洁地罗列出来，方便同方向的同学快速阅读，也方便自己</p>
+                  <p>条目我也列出了提交者是谁，方便大家一起互相交流</p>
+                  <h2> 提交 </h2>
+                  <form action="/add/" method="get">
+                      <p>分类:
+                          <select type="text" id="a" name="a" style="width:150px; height:28px;">
+                              {% if catalogue_list %}
+                                  {% for each in catalogue_list %}
+                                      <option >{{ each.catalogue_text }}</option>
+                                  {% endfor %}
+                              {% else %}
+                                  <p>No polls are available.</p>
+                              {% endif %}
+                          </select>
+
+                      </p>
+                      <p>文章名字: <input type="text" id="b" name="b"> </p>
+                      <p>文章链接: <input type="text" id="c" name="c"> </p>
+                      <p>文章会议: <input type="text" id="d" name="d"> </p>
+                      <p>文章年份: <input type="number" id="e" name="e"> </p>
+                      <p>阅读人（就是你）: <input type="text" id="f" name="f"> </p>
+                      <p>文章亮点简述: </p> <textarea cols="50" rows="10" type="text" id="g" name="g"></textarea> <br>
+                      <input type="submit" value="提交" />
+                  </form>
+                </div>
+                <div class="right">
+                    <h2>提交帮助</h2>
+                    <p> <font color="red">分类:</font>从已知框内选择 </p>
+                    <p> <font color="red">文章名字:</font>论文名字（重复文章将无法上传）</p>
+                    <p> <font color="red">文章链接:</font>文章的网上pdf链接 </p>
+                    <p> <font color="red">文章会议:</font>例如CVPR什么的 </p>
+                    <p> <font color="red">文章年份:</font>哪一年的 </p>
+                    <p> <font color="red">阅读人:</font>就是你！帮助检索 </p>
+                    <p> <font color="red">文章两点简述:</font>对文章的概括性阅读。可以包含创新点，算法等等以及自己的感悟 </p>
+
+                    <h2>注意事项</h2>
+                    <p>1.不提供删除和编辑</p>
+                    <p>2.希望大家多多支持！！</p><br>
+                </div>
+            </div>
+
+
+
+        </main>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+{% load static %}
+
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>PaperSharing</title>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'share/style.css' %}">
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+
+
+
+
+<body>
+
+<main role="main" class="container">
+      <h1 class="mt-5">PaperSharing    </h1>
+</main>
+
+
+
+
+<nav class="navbar navbar-inverse ">
+  <div class="container">
+      <ul class="nav navbar-nav">
+        <li><a href="{%url 'index'%}"><font size="4px">Home</font></a></li>
+        {% if catalogue_list %}
+            {% for each in catalogue_list %}
+            	{%if each.catalogue_text == catalogue.catalogue_text%}
+                	<li><a href="{% url 'detail' each.id %}">   <font size="4px"><font color="red">{{ each.catalogue_text }}</font></font>         </a></li> 
+                {%else%}
+                	<li><a href="{% url 'detail' each.id %}"> <font size="4px">{{ each.catalogue_text }} </font></a></li>                	
+            	{%endif%}
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+
+
+      </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+  <table class="table table-hover table-sm table-striped" style="table-layout: fixed;">
+      
+        <tr>
+            <th bgcolor="black" width="2%"> <font color="white">ID</font> </th>
+            <th bgcolor="black" width="6%"> <font color="white">Conference</font> </th>
+            <th bgcolor="black" width="5%"><font color="white">Year</font></th>
+            <th bgcolor="black" width="25%"> <font color="white">Paper </font> </th>
+            <th bgcolor="black" width="5%"><font color="white">Reader</font></th>
+            <th bgcolor="black" width="8%"><font color="white">Commit day </font></th>
+            <th bgcolor="black"><font color="white">Description</font></th>
+        </tr>
+      
+    
+        <tbody>
+              {% for each in catalogue.item_set.all %}
+                <tr>
+                    <td> <p3></p3> </td>
+                    <td>{{each.item_conf}}</td>
+                    <td>{{each.item_date}}</td>
+                    <td><a href="{{each.item_url}}"" target="_blank">{{each.item_name}}</a></td>
+                    <td>{{each.item_reader}}</td>
+                    <td>{{each.pub_date}}</td>
+                    <td>{{each.item_description}}</td>
+                </tr>
+              {% endfor %}
+        </tbody>
+      
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+
+
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PaperSharing</title>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+
+
+<main role="main" class="container">
+      <h1 class="mt-5">PaperSharing    </h1>
+</main>
+
+
+
+<nav class="navbar navbar-inverse ">
+  <div class="container">
+
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'index'%}"><font size="4px">Home</font></a></li>
+        {% if catalogue_list %}
+            {% for each in catalogue_list %}
+                <li><a href="{% url 'detail' each.id %}"><font size="4px">{{ each.catalogue_text }}</font></a></li>
+            {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+
+
+      </ul>
+
+    
+  </div>
+</nav>
+
+
+<main role="main" class="container">
+      <h2>  提交成功！ </h2>
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
